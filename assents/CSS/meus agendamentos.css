@@ -1,0 +1,230 @@
+ body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            background-image: url(../imagens/tesoura3.png);
+            background-size: 90% 80%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        header {
+            background-color: #8B0000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #2a5298;
+            margin-bottom: 20px;
+            background-color: black;
+            border: 2px solid #8B0000;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .btn-voltar {
+            background-color: #6c757d;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .btn-voltar:hover {
+            background-color: #5a6268;
+        }
+
+        .agendamento-card {
+            background-color: black;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 2px solid #8B0000;
+        }
+
+        .agendamento-info {
+            margin-bottom: 15px;
+        }
+
+        .info-linha {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #2a5298;
+        }
+
+        .valor {
+            color: #333;
+        }
+
+        .botoes-agendamento {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-editar,
+        .btn-desmarcar {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-editar {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-editar:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-desmarcar {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-desmarcar:hover {
+            background-color: #c82333;
+        }
+
+        .vazio {
+            background-color: black;
+            border: 2px solid #8B0000;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            color: #666;
+        }
+
+        .btn-novo-agendamento {
+            background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .mensagem {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .sucesso {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: black;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .modal-form div {
+            margin-bottom: 15px;
+        }
+
+        .modal-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .modal-form input,
+        .modal-form select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .modal-botoes {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-salvar {
+            flex: 1;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-salvar:hover {
+            background-color: #218838;
+        }
+
+        .btn-cancelar {
+            flex: 1;
+            padding: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-cancelar:hover {
+            background-color: #5a6268;
+        }

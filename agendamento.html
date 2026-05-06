@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Agendamento - Barbearia</title>
+    <link href="assents/CSS/agendamento.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Barbearia - Novo Agendamento</h1>
+    </header>
+
+    <div class="container">
+        <h2>Agendar Serviço</h2>
+
+        <form id="formAgendamento">
+            <div>
+                <label for="nome" style="color: white;">Nome:</label>
+                <input type="text" id="nome" required>
+            </div>
+
+            <div>
+                <label for="servico" style="color: white;">Serviço:</label>
+                <select id="servico" required>
+                    <option value="">Selecione um serviço</option>
+                    <option value="corte">Corte</option>
+                    <option value="barba">Barba</option>
+                    <option value="corte_barba">Corte + Barba</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="data" style="color: white;">Data:</label>
+                <input type="date" id="data" required>
+            </div>
+
+            <div>
+                <label for="hora" style="color: white;">Horário:</label>
+                <input type="time" id="hora" required>
+            </div>
+
+            <div>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" required placeholder="(63) 99999-9999">
+            </div>
+
+            <div class="botoes">
+                <button type="submit" class="btn-agendar">Confirmar Agendamento</button>
+                <button type="button" class="btn-voltar" onclick="window.location.href='dashboard.html'">Voltar</button>
+            </div>
+        </form>
+
+        <p id="mensagem"></p>
+    </div>
+
+    <script src="assents/JS/agendamento.js"></script>
+
+</body>
+
+</html>

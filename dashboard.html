@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BarberFlow</title>
+    <link href="assents/CSS/dashboard.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>BarberFlow</h1>
+        <p>Bem-vindo ao seu painel</p>
+    </header>
+
+    <div class="container">
+        <div class="usuario-info">
+            <p><strong>Usuário:</strong> <span id="nomeUsuario"></span></p>
+            <p><strong>E-mail:</strong> <span id="emailUsuario"></span></p>
+        </div>
+
+        <div class="menu">
+            <div class="card" onclick="window.location.href='agendamento.html'">
+                <h3 style="color: 00008B;">📅 Novo Agendamento</h3>
+                <p style="color: white;">Agende um serviço na barbearia</p>
+            </div>
+
+            <div class="card" onclick="window.location.href='meus-agendamentos.html'">
+                <h3>📋 Meus Agendamentos</h3>
+                <p style="color: white;">Visualize, desmarque ou reagende seus compromissos</p>
+            </div>
+        </div>
+
+        <button class="btn-sair" onclick="logout()">Sair</button>
+    </div>
+
+    <script src="assents/JS/dashboard.js"></script>
+</body>
+</html>

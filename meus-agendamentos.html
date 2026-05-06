@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Agendamentos - Barbearia</title>
+    <link href="assents/CSS/meus agendamentos.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Barbearia - Meus Agendamentos</h1>
+    </header>
+
+    <div class="container">
+        <button class="btn-voltar" onclick="window.location.href='dashboard.html'">← Voltar ao Agendamento</button>
+
+        <h2>Seus Agendamentos</h2>
+
+        <p id="mensagem"></p>
+
+        <div id="listaAgendamentos" style="color: white;"></div>
+    </div>
+
+    <!-- Modal para reagendar -->
+    <div id="modalReagendar" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h3>Reagendar Agendamento</h3>
+            <form class="modal-form" id="formReagendar">
+                <div>
+                    <label for="novaData" style="color: white;">Nova Data:</label>
+                    <input type="date" id="novaData" required>
+                </div>
+                <div>
+                    <label for="novaHora" style="color: white;">Novo Horário:</label>
+                    <input type="time" id="novaHora" required>
+                </div>
+                <div class="modal-botoes">
+                    <button type="submit" class="btn-salvar">Salvar</button>
+                    <button type="button" class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="assents/JS/meus-agendamentos.js"></script>
+</body>
+
+</html>

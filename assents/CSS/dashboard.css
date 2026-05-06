@@ -1,0 +1,74 @@
+body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            background-image: url(../imagens/tesoura3.png);
+            background-size: 90% 60%;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        header {
+            background-color:  #8B0000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: black;
+        }
+        .usuario-info {
+            background-color: black;
+            border: 2px solid #8B0000;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            color: white;
+        }
+        .usuario-info p {
+            margin-bottom: 10px;
+        }
+        .menu {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        .card {
+            background-color: black;
+            border: 2px solid #8B0000;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            
+        }
+        .card h3 {
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #666;
+            font-size: 14px;
+        }
+        .btn-sair {
+            width: 100%;
+            padding: 12px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .btn-sair:hover {
+            background-color: #c82333;
+        }
