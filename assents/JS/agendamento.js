@@ -1,79 +1,79 @@
 document.addEventListener('DOMContentLoaded', function () {
-            const usuarioLogado = localStorage.getItem('usuarioLogado');
-            if (!usuarioLogado) {
-                window.location.href = 'index.html';
-                return;
-            }
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
 
-            const usuario = JSON.parse(usuarioLogado);
-            document.getElementById('nome').value = usuario.nome;
+    if (!usuarioLogado) {
+        window.location.href = 'index.html';
+        return;
+    }
 
-            const form = document.getElementById('formAgendamento');
-            const mensagem = document.getElementById('mensagem');
+    const usuario = JSON.parse(usuarioLogado);
+    document.getElementById('nome').value = usuario.nome;
 
-            // Define data mínima como hoje
-            const hoje = new Date().toISOString().split('T')[0];
-            document.getElementById('data').min = hoje;
+    const form = document.getElementById('formAgendamento');
+    const mensagem = document.getElementById('mensagem');
 
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
+    const hoje = new Date().toISOString().split('T')[0];
+    document.getElementById('data').min = hoje;
 
-                const nome = document.getElementById('nome').value.trim();
-                const servico = document.getElementById('servico').value;
-                const data = document.getElementById('data').value;
-                const hora = document.getElementById('hora').value;
-                const telefone = document.getElementById('telefone').value.trim();
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-                const novoAgendamento = {
-                    id: Date.now(),
-                    emailUsuario: usuario.email,
-                    servico,
-                    data,
-                    hora,
-                    telefone // 👈 novo campo
-                };
+        const nome = document.getElementById('nome').value.trim();
+        const servico = document.getElementById('servico').value;
+        const data = document.getElementById('data').value;
+        const hora = document.getElementById('hora').value;
+        const telefone = document.getElementById('telefone').value.trim();
 
-                if (!nome || !servico || !data || !hora) {
-                    mostraMensagem('Todos os campos são obrigatórios.', false);
-                    return;
-                }
+        if (!nome || !servico || !data || !hora) {
+            mostrarMensagem('Todos os campos são obrigatórios.', false);
+            return;
+        }
 
-                const dataHora = new Date(`${data}T${hora}`);
-                if (dataHora < new Date()) {
-                    mostraMensagem('Data e horário devem ser no futuro.', false);
-                    return;
-                }
+        const dataHora = new Date(`${data}T${hora}`);
+        if (dataHora < new Date()) {
+            mostrarMensagem('Data e horário devem ser no futuro.', false);
+            return;
+        }
 
-                let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
+        let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
 
-                // Verificar conflito de horário
-                const conflito = agendamentos.some(a => a.data === data && a.hora === hora && a.emailUsuario === usuario.email);
-                if (conflito) {
-                    mostraMensagem('Você já tem um agendamento nesse horário.', false);
-                    return;
-                }
+        const conflito = agendamentos.some(a =>
+            a.data === data &&
+            a.hora === hora &&
+            a.emailUsuario === usuario.email
+        );
 
-                const agendamento = {
-                    id: Date.now(),
-                    nome,
-                    servico,
-                    data,
-                    hora,
-                    telefone,
-                    emailUsuario: usuario.email,
-                    dataAgendamento: new Date().toISOString()
-                };
+        if (conflito) {
+            mostrarMensagem('Você já tem um agendamento nesse horário.', false);
+            return;
+        }
 
-                agendamentos.push(agendamento);
-                localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+        const agendamento = {
+            id: Date.now(),
+            nome,
+            servico,
+            data,
+            hora,
+            telefone,
+            emailUsuario: usuario.email,
+            dataAgendamento: new Date().toISOString(),
 
+            // 📸 foto automática
+            foto: `https://randomuser.me/api/portraits/men/${Math.floor(Math.random() * 99)}.jpg`
+        };
 
-                mostraMensagem('Agendamento realizado com sucesso!', true);
-                setTimeout(() => window.location.href = 'meus-agendamentos.html', 1500);
-            });
+        agendamentos.push(agendamento);
+        localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
 
-            function mostraMensagem(texto, sucesso) {
-                mensagem.textContent = texto;
-                mensagem.className = 'mensagem ' + (sucesso ? 'sucesso' : 'erro');
-            }
-        });
+        mostrarMensagem('Agendamento realizado com sucesso!', true);
+
+        setTimeout(() => {
+            window.location.href = 'meus-agendamentos.html';
+        }, 1500);
+    });
+
+    function mostrarMensagem(texto, sucesso) {
+        mensagem.textContent = texto;
+        mensagem.className = 'mensagem ' + (sucesso ? 'sucesso' : 'erro');
+    }
+});

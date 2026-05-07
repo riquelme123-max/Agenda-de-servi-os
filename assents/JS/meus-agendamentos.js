@@ -1,141 +1,141 @@
+let agendamentoEmEdicao = null;
+
 document.addEventListener('DOMContentLoaded', function () {
-            const usuarioLogado = localStorage.getItem('usuarioLogado');
-            if (!usuarioLogado) {
-                window.location.href = 'index.html';
-                return;
-            }
+    const usuarioLogado = localStorage.getItem('usuarioLogado');
 
-            const usuario = JSON.parse(usuarioLogado);
-            renderizarAgendamentos(usuario.email);
-        });
+    if (!usuarioLogado) {
+        window.location.href = 'index.html';
+        return;
+    }
 
-        async function renderizarAgendamentos(emailUsuario) {
-            let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
+    const usuario = JSON.parse(usuarioLogado);
+    renderizarAgendamentos(usuario.email);
+});
 
-            agendamentos = agendamentos.map(a => ({
-                ...a,
-                telefone: a.telefone || ''
-            }));
+function renderizarAgendamentos(emailUsuario) {
+    let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
 
-            const meuAgendamentos = agendamentos.filter(a => a.emailUsuario === emailUsuario);
-            const container = document.getElementById('listaAgendamentos');
+    const meus = agendamentos.filter(a => a.emailUsuario === emailUsuario);
 
-            if (meuAgendamentos.length === 0) {
-                container.innerHTML = `<div class="vazio">
-                    <p>Você não possui agendamentos</p>
-                    <button class="btn-novo-agendamento" onclick="window.location.href='agendamento.html'">Novo Agendamento</button>
-                </div>`;
-                return;
-            }
+    const container = document.getElementById('listaAgendamentos');
 
-            meuAgendamentos.sort((a, b) => new Date(`${a.data}T${a.hora}`) - new Date(`${b.data}T${b.hora}`));
-
-            container.innerHTML = meuAgendamentos.map(agendamento => `
-            <div class="agendamento-card">
-                <div class="agendamento-info">
-
-                    <div class="info-linha">
-                        <span class="label">Cliente:</span>
-                        <span class="valor" style="color: white;">${agendamento.nome}</span>
-                    </div>
-
-                    <div class="info-linha">
-                        <span class="label">Serviço:</span>
-                        <span class="valor" style="color: white;">${traduzirServico(agendamento.servico)}</span>
-                    </div>
-
-                    <div class="info-linha">
-                        <span class="label">Telefone:</span>
-                        <span class="valor" style="color: white;">${formatarTelefone(agendamento.telefone)}</span>
-                    </div>
-
-                    <div class="info-linha">
-                        <span class="label">Data:</span>
-                        <span class="valor" style="color: white;">${formatarData(agendamento.data)}</span>
-                    </div>
-
-                    <div class="info-linha">
-                        <span class="label">Horário:</span>
-                        <span class="valor" style="color: white;">${agendamento.hora}</span>
-                    </div>
-
-                </div>
-
-                <div class="botoes-agendamento">
-                    <button class="btn-editar" onclick="abrirModalReagendar(${agendamento.id})">Reagendar</button>
-                    <button class="btn-desmarcar" onclick="desmarcarAgendamento(${agendamento.id})">Desmarcar</button>
-                </div>
+    if (meus.length === 0) {
+        container.innerHTML = `
+            <div class="vazio">
+                <p>Você não possui agendamentos</p>
+                <button onclick="window.location.href='agendamento.html'">
+                    Novo Agendamento
+                </button>
             </div>
-        `).join('');
-        }
+        `;
+        return;
+    }
 
-        function traduzirServico(servico) {
+    meus.sort((a, b) =>
+        new Date(`${a.data}T${a.hora}`) - new Date(`${b.data}T${b.hora}`)
+    );
+
+    container.innerHTML = meus.map(a => `
+        <div class="agendamento-card">
+
+            <img src="${a.foto}" class="foto-cliente" />
+
+            <div class="agendamento-info">
+                <p><b>Cliente:</b> ${a.nome}</p>
+                <p><b>Serviço:</b> ${traduzir(a.servico)}</p>
+                <p><b>Telefone:</b> ${formatarTelefone(a.telefone)}</p>
+                <p><b>Data:</b> ${formatarData(a.data)}</p>
+                <p><b>Hora:</b> ${a.hora}</p>
+            </div>
+
+            <div class="botoes-agendamento">
+                <button onclick="abrirModalReagendar(${a.id})">
+                    Reagendar
+                </button>
+
+                <button onclick="desmarcar(${a.id})">
+                    Desmarcar
+                </button>
+            </div>
+
+        </div>
+    `).join('');
+}
+
+function traduzir(servico) {
+    return {
+        corte: 'Corte',
+        barba: 'Barba',
+        corte_barba: 'Corte + Barba'
+    }[servico] || servico;
+}
+
+function formatarData(data) {
+    const [y, m, d] = data.split('-');
+    return `${d}/${m}/${y}`;
+}
+
+function formatarTelefone(tel) {
+    if (!tel) return 'Não informado';
+    let v = tel.replace(/\D/g, '');
+
+    if (v.length === 11) {
+        return v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    }
+
+    return tel;
+}
+
+function desmarcar(id) {
+    let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
+
+    agendamentos = agendamentos.filter(a => a.id !== id);
+
+    localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+
+    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+    renderizarAgendamentos(usuario.email);
+}
+
+/* =======================
+   🔥 REAGENDAR
+======================= */
+
+function abrirModalReagendar(id) {
+    agendamentoEmEdicao = id;
+    document.getElementById('modalReagendar').style.display = 'block';
+}
+
+function fecharModal() {
+    document.getElementById('modalReagendar').style.display = 'none';
+    agendamentoEmEdicao = null;
+}
+
+document.getElementById('formReagendar').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const novaData = document.getElementById('novaData').value;
+    const novaHora = document.getElementById('novaHora').value;
+
+    let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
+
+    agendamentos = agendamentos.map(a => {
+        if (a.id === agendamentoEmEdicao) {
             return {
-                'corte': 'Corte',
-                'barba': 'Barba',
-                'corte_barba': 'Corte + Barba'
-            }[servico] || servico;
+                ...a,
+                data: novaData,
+                hora: novaHora
+            };
         }
+        return a;
+    });
 
-        function formatarData(data) {
-            const [ano, mes, dia] = data.split('-');
-            return `${dia}/${mes}/${ano}`;
-        }
+    localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
 
-        function formatarTelefone(tel) {
-            if (!tel) return 'Não informado';
+    fecharModal();
 
-            let v = tel.replace(/\D/g, '');
-            if (v.length === 11) {
-                return v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-            }
-            return tel;
-        }
+    const usuario = JSON.parse(localStorage.getItem('usuarioLogado'));
 
-        function desmarcarAgendamento(id) {
-            let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
-            agendamentos = agendamentos.filter(a => a.id !== id);
-            localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
-
-            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-            renderizarAgendamentos(usuarioLogado.email);
-        }
-
-        // ✅ ABRIR MODAL
-        function abrirModalReagendar(id) {
-            agendamentoEmEdicao = id;
-            document.getElementById('modalReagendar').style.display = 'block';
-        }
-
-        // ✅ FECHAR MODAL
-        function fecharModal() {
-            document.getElementById('modalReagendar').style.display = 'none';
-        }
-
-        // ✅ SALVAR REAGENDAMENTO
-        document.getElementById('formReagendar').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const novaData = document.getElementById('novaData').value;
-            const novaHora = document.getElementById('novaHora').value;
-
-            let agendamentos = JSON.parse(localStorage.getItem('agendamentos')) || [];
-
-            agendamentos = agendamentos.map(a => {
-                if (a.id === agendamentoEmEdicao) {
-                    return {
-                        ...a,
-                        data: novaData,
-                        hora: novaHora
-                    };
-                }
-                return a;
-            });
-
-            localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
-
-            fecharModal();
-
-            const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-            renderizarAgendamentos(usuarioLogado.email);
-        });
+    renderizarAgendamentos(usuario.email);
+});
