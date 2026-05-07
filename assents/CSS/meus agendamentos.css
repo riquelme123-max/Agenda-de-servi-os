@@ -1,14 +1,14 @@
  body {
             font-family: Arial, sans-serif;
             background-color: black;
-            background-image: url(../imagens/tesoura3.png);
-            background-size: 90% 80%;
+            background-image: url(../imagens/fundo\ nv.jpg);
+            background-size: 100% 210%;
             background-repeat: no-repeat;
             background-position: center;
         }
 
         header {
-            background-color: #8B0000;
+            background-color:   #eb232370;
             color: white;
             padding: 20px;
             text-align: center;

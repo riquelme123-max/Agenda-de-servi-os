@@ -36,27 +36,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     <div class="info-linha">
                         <span class="label">Cliente:</span>
-                        <span class="valor">${agendamento.nome}</span>
+                        <span class="valor" style="color: white;">${agendamento.nome}</span>
                     </div>
 
                     <div class="info-linha">
                         <span class="label">Serviço:</span>
-                        <span class="valor">${traduzirServico(agendamento.servico)}</span>
+                        <span class="valor" style="color: white;">${traduzirServico(agendamento.servico)}</span>
                     </div>
 
                     <div class="info-linha">
                         <span class="label">Telefone:</span>
-                        <span class="valor">${formatarTelefone(agendamento.telefone)}</span>
+                        <span class="valor" style="color: white;">${formatarTelefone(agendamento.telefone)}</span>
                     </div>
 
                     <div class="info-linha">
                         <span class="label">Data:</span>
-                        <span class="valor">${formatarData(agendamento.data)}</span>
+                        <span class="valor" style="color: white;">${formatarData(agendamento.data)}</span>
                     </div>
 
                     <div class="info-linha">
                         <span class="label">Horário:</span>
-                        <span class="valor">${agendamento.hora}</span>
+                        <span class="valor" style="color: white;">${agendamento.hora}</span>
                     </div>
 
                 </div>

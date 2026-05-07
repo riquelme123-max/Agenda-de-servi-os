@@ -7,19 +7,19 @@
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
              background-color: black;
-            background-size: 80% 80%;
+            background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
-            min-height: 800px;
+            min-height: 950px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-image: url('../imagens/tesoura3.png');
+            background-image: url('https://images.pexels.com/photos/5706484/pexels-photo-5706484.jpeg');
            
             
         }
         .login-container {
-            background-color: black;
+            background-color: rgb(94, 75, 75);
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0,0,0,0.3);
