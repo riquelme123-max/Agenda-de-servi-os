@@ -1,16 +1,11 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: Arial, sans-serif;
   background-color: black;
   background-image: url(../imagens/fundo\ nv.jpg);
-  background-size: 100% 148%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
 }
 
 header {

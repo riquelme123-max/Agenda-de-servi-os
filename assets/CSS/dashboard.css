@@ -2,9 +2,10 @@ body {
   font-family: Arial, sans-serif;
   background-color: black;
   background-image: url(../imagens/fundo\ nv.jpg);
-  background-size: 100% 148%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
 }
 header {
   background-color: #eb232370;
