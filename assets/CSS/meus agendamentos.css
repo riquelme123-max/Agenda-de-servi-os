@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   background-color: black;
   background-image: url(../imagens/fundo\ nv.jpg);
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
