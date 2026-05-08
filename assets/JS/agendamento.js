@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const usuario = JSON.parse(usuarioLogado);
-    document.getElementById('nome').value = usuario.nome;
+    // document.getElementById('nome').value = usuario.nome;
 
     const form = document.getElementById('formAgendamento');
     const mensagem = document.getElementById('mensagem');
